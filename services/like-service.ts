@@ -13,8 +13,8 @@ export class LikeService implements ILikeService {
   async createLike(like: Like): Promise<any> {
     return this._db.collection('likes').insertOne(like);
   }
-  async getLikesPerSnippet(snippedId: string): Promise<Like[]> {
-    return this._db.collection('likes').findOne({snippedId: snippedId})
+  async getLikesPerSnippet(snippetId: ObjectID): Promise<Like[]> {
+    console.log("This is the id: " + snippetId);
+    return this._db.collection('likes').find({ snippetId: snippetId}).toArray();
   }
-
 }
